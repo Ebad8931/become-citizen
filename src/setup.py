@@ -2,6 +2,7 @@ from cx_Freeze import setup, Executable
 import sys
 import os
 
+
 # Ensure it runs as a GUI application (not a console one)
 base = "Win32GUI" if sys.platform == "win32" else None
 
@@ -21,14 +22,21 @@ executables = [
 # Define the setup configuration
 setup(
     name=app_name,
-    version="1.0",
+    version="0.4",
     description="Become-Citizen app helps users prepare for the U.S. naturalization test with Listening and Speaking practice.",
     executables=executables,
     options={
         "build_exe": {
-            "build_exe": output_path,                   # Output folder
-            "includes": [],                             # Add dependencies if needed
-            "excludes": ["tkinter.test", "unittest"],   # Exclude unnecessary modules
+            "build_exe": output_path,                       # Output folder
+            "includes": [],                                 # Add dependencies if needed
+            "excludes": ["tkinter.test", "unittest"],       # Exclude unnecessary modules
+            "include_files": [
+                ("C:/Windows/System32/ucrtbase.dll", "ucrtbase.dll"),
+                ("C:/Windows/System32/VCRUNTIME140.dll", "VCRUNTIME140.dll"),
+                ("./assets/become-citizen-favicon.ico", "assets/become-citizen-favicon.ico"),
+                ("./assets/become-citizen-brand.png", "assets/become-citizen-brand.png")
+            ],                              # include required DLLs
+            "include_msvcr": True,          # include required runtime files (msvcr.dll and Python DLLs)
             "optimize": 2
         }
     },
