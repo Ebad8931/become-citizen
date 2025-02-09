@@ -2,6 +2,8 @@ from cx_Freeze import setup, Executable
 import sys
 import os
 
+from app_constants import logo_path, favicon_path
+
 
 # Ensure it runs as a GUI application (not a console one)
 base = "Win32GUI" if sys.platform == "win32" else None
@@ -33,8 +35,8 @@ setup(
             "include_files": [
                 ("C:/Windows/System32/ucrtbase.dll", "ucrtbase.dll"),
                 ("C:/Windows/System32/VCRUNTIME140.dll", "VCRUNTIME140.dll"),
-                os.path.join('..', 'assets/become-citizen-brand.png'),
-                os.path.join('..', 'assets/become-citizen-favicon.ico'),
+                logo_path,
+                favicon_path
             ],                              # include required DLLs
             "include_msvcr": True,          # include required runtime files (msvcr.dll and Python DLLs)
             "optimize": 2

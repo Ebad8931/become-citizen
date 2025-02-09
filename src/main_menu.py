@@ -2,12 +2,14 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
 
+from app_constants import logo_path
+
 class MainMenu(tk.Frame):
     def __init__(self, parent, navigate_to_coming_soon):
         super().__init__(parent)
         
         # Load the logo
-        self.logo_img = Image.open("../assets/become-citizen-brand.png")
+        self.logo_img = Image.open(logo_path)
         self.logo_img = self.logo_img.resize((100, 100), Image.LANCZOS)  # Resize the logo
         self.logo = ImageTk.PhotoImage(self.logo_img)
 
