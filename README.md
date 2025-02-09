@@ -23,6 +23,11 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
+### 5️⃣ Build the Application
+Application is built using cx_Freeze (Alternative to pyinstaller) and will be availabe in the releases folder
+```bash
+python .\src\setup.py build 
+```
 
 ## 📥 Download & Run the Executable
 For users who just want to run the app, download the latest `.exe` file from the Releases section:
