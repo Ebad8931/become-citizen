@@ -22,7 +22,7 @@ executables = [
 # Define the setup configuration
 setup(
     name=app_name,
-    version="0.4",
+    version="1.0",
     description="Become-Citizen app helps users prepare for the U.S. naturalization test with Listening and Speaking practice.",
     executables=executables,
     options={
@@ -33,8 +33,8 @@ setup(
             "include_files": [
                 ("C:/Windows/System32/ucrtbase.dll", "ucrtbase.dll"),
                 ("C:/Windows/System32/VCRUNTIME140.dll", "VCRUNTIME140.dll"),
-                ("./assets/become-citizen-favicon.ico", "assets/become-citizen-favicon.ico"),
-                ("./assets/become-citizen-brand.png", "assets/become-citizen-brand.png")
+                os.path.join('..', 'assets/become-citizen-brand.png'),
+                os.path.join('..', 'assets/become-citizen-favicon.ico'),
             ],                              # include required DLLs
             "include_msvcr": True,          # include required runtime files (msvcr.dll and Python DLLs)
             "optimize": 2
