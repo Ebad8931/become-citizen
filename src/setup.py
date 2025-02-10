@@ -5,12 +5,13 @@ import os
 from app_constants import assets_dir, temp_dir
 
 
+# define application meta-data
+script_path = os.path.join(os.path.dirname(__file__), "app.py")                         # Points to src/app.py
+output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../releases"))   # Places .exe in Project-Root/Releases
+app_name = 'Become-Citizen'
+
 # Ensure it runs as a GUI application (not a console one)
 base = "Win32GUI" if sys.platform == "win32" else None
-
-script_path = os.path.join(os.path.dirname(__file__), "app.py")  # Points to src/app.py
-output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../releases"))  # Places .exe in Project-Root/Releases
-app_name = 'Become-Citizen'
 
 # Define the executable file
 executables = [
