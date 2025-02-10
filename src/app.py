@@ -2,7 +2,7 @@ import tkinter as tk
 from main_menu import MainMenu
 from coming_soon import ComingSoon
 from listening_exercise import ListeningExercise
-from app_constants import app_title, window_size, favicon_path
+from app_constants import app_title, favicon_path
 
 
 class App(tk.Tk):
