@@ -15,8 +15,6 @@ else:
 
 app_title = 'Become Citizen'
 
-window_size = '500x500'
-
 assets_dir = os.path.join(base_path, 'assets')
 
 temp_dir = os.path.join(base_path, 'temp')

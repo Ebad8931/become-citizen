@@ -10,7 +10,7 @@ class App(tk.Tk):
         super().__init__()
 
         self.title(app_title)
-        self.geometry(window_size)
+        self.geometry("450x550")
         self.iconbitmap(favicon_path)
 
         # Initialize container frame
