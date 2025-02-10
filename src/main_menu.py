@@ -5,7 +5,12 @@ from PIL import Image, ImageTk
 from app_constants import logo_path
 
 class MainMenu(tk.Frame):
-    def __init__(self, parent, navigate_to_coming_soon):
+    def __init__(
+        self, 
+        parent, 
+        navigate_to_coming_soon, 
+        navigate_to_listening_exercises
+    ):
         super().__init__(parent)
         
         # Load the logo
@@ -17,17 +22,21 @@ class MainMenu(tk.Frame):
         logo_label = tk.Label(self, image=self.logo)
         logo_label.pack(pady=20)
 
-        # Menu Buttons
-        options = [
-            "Knowledge Test",
-            "Reading Practice",
-            "Listening Exercises",
-            "Speaking Practice"
-        ]
+        # Knowledge Test Button
+        button = ttk.Button(self, text="Knowledge Test", command=navigate_to_coming_soon)
+        button.pack(pady=10, ipadx=20, ipady=5)
 
-        for option in options:
-            button = ttk.Button(self, text=option, command=navigate_to_coming_soon)
-            button.pack(pady=10, ipadx=20, ipady=5)
+        # Reading Practice Button
+        button = ttk.Button(self, text="Reading Practice", command=navigate_to_coming_soon)
+        button.pack(pady=10, ipadx=20, ipady=5)
+
+        # Listening Exercises Button
+        button = ttk.Button(self, text="Listening Exercises", command=navigate_to_listening_exercises)
+        button.pack(pady=10, ipadx=20, ipady=5)
+
+        # Speaking Practice Button
+        button = ttk.Button(self, text="Speaking Practice", command=navigate_to_coming_soon)
+        button.pack(pady=10, ipadx=20, ipady=5)
 
         # Exit Button
         exit_button = ttk.Button(self, text="Exit", command=parent.quit)
