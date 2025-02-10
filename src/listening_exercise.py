@@ -5,12 +5,13 @@ from speech_util import say_out_loud
 
 
 class ListeningExercise(tk.Frame):
+    
     def __init__(self, parent, back_to_menu):
         super().__init__(parent)
 
         # Title Label
-        label = tk.Label(self, text="Listening Exercises", font=("Arial", 20, "bold"))
-        label.pack(pady=50)
+        label = tk.Label(self, text="Listening Exercise", font=("Arial", 20, "bold"))
+        label.pack(pady=30)
 
         # Message Label
         message = tk.Label(self, text="Listen to the question and select an answer", font=("Arial", 14))
@@ -36,10 +37,14 @@ class ListeningExercise(tk.Frame):
 
         # setting up question for the exercise
         self.current_question = None
+        self.selected_answer = None
         self.load_new_question()
     
+
     def play_question_audio(self):
         say_out_loud(self.current_question["text"])
+        self.display_answer_choices(self.current_question["options"])
+
 
     def load_new_question(self):
         question = {
@@ -48,7 +53,33 @@ class ListeningExercise(tk.Frame):
             "answer": "Washington, D.C."
         }
 
-        self.current_question = question
+        self.current_question = question    # current question assigned
+        self.selected_answer = None         # clears the answer
+
+
+    def display_answer_choices(self, answer_options):
+        # clears existing option buttons
+        for btn in self.option_buttons:
+            btn.destroy()
+        self.option_buttons.clear()
+
+        # display answer choices
+        for option in answer_options:
+            btn = ttk.Button(self.frame_options, text=option, command=lambda opt=option: self.select_answer(opt))
+            btn.pack(fill="x", padx=20, pady=2)
+            self.option_buttons.append(btn)
+
+
+    def select_answer(self, option):
+        self.selected_answer = option
+
 
     def submit_answer(self):
-        pass
+        print(self.selected_answer)
+
+        #TODO: check the selected answer
+
+        self.load_new_question()
+        
+        # hide the choices for the new question, will be available when the user plays the question
+        self.display_answer_choices([])

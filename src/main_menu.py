@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 from app_constants import logo_path
 
 class MainMenu(tk.Frame):
+    
     def __init__(
         self, 
         parent, 
@@ -30,8 +31,8 @@ class MainMenu(tk.Frame):
         button = ttk.Button(self, text="Reading Practice", command=navigate_to_coming_soon)
         button.pack(pady=10, ipadx=20, ipady=5)
 
-        # Listening Exercises Button
-        button = ttk.Button(self, text="Listening Exercises", command=navigate_to_listening_exercises)
+        # Listening Exercise Button
+        button = ttk.Button(self, text="Listening Exercise", command=navigate_to_listening_exercises)
         button.pack(pady=10, ipadx=20, ipady=5)
 
         # Speaking Practice Button
