@@ -2,7 +2,7 @@ from cx_Freeze import setup, Executable
 import sys
 import os
 
-from app_constants import assets_dir
+from app_constants import assets_dir, temp_dir
 
 
 # Ensure it runs as a GUI application (not a console one)
@@ -35,7 +35,10 @@ setup(
             "build_exe": output_path,                       # Output folder
             "includes": [],                                 # Add dependencies if needed
             "excludes": ["tkinter.test", "unittest"],       # Exclude unnecessary modules
-            "include_files": [(assets_dir, "assets")],      # include assets
+            "include_files": [
+                (assets_dir, "assets"), 
+                (temp_dir, "temp")
+            ],                                              # include assets and temp folders
             "include_msvcr": True,                          # include dll files (msvcr.dll and Python DLLs)
             "optimize": 2
         }
