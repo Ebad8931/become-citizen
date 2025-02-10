@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 
+from speech_util import say_out_loud
+
+
 class ListeningExercises(tk.Frame):
     def __init__(self, parent, back_to_menu):
         super().__init__(parent)
@@ -31,13 +34,21 @@ class ListeningExercises(tk.Frame):
         back_button = ttk.Button(self, text="Back to Menu", command=back_to_menu)
         back_button.pack(pady=30, ipadx=20, ipady=5)
 
+        # setting up question for the exercise
+        self.current_question = None
         self.load_new_question()
     
     def play_question_audio(self):
-        pass
+        say_out_loud(self.current_question["text"])
 
     def load_new_question(self):
-        pass
-    
+        question = {
+            "text": "What is the capital of the United States?",
+            "options": ["New York", "Los Angeles", "Washington, D.C.", "Chicago"],
+            "answer": "Washington, D.C."
+        }
+
+        self.current_question = question
+
     def submit_answer(self):
         pass
