@@ -4,7 +4,7 @@ from tkinter import ttk
 from speech_util import say_out_loud
 
 
-class ListeningExercises(tk.Frame):
+class ListeningExercise(tk.Frame):
     def __init__(self, parent, back_to_menu):
         super().__init__(parent)
 

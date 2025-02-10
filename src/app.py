@@ -1,7 +1,7 @@
 import tkinter as tk
 from main_menu import MainMenu
 from coming_soon import ComingSoon
-from listening_exercises import ListeningExercises
+from listening_exercise import ListeningExercise
 from app_constants import app_title, window_size, favicon_path
 
 
@@ -39,7 +39,7 @@ class App(tk.Tk):
         """Displays the Listening Exercises screen."""
         for widget in self.container.winfo_children():
             widget.destroy()
-        ListeningExercises(self.container, self.show_main_menu).pack(fill="both", expand=True)
+        ListeningExercise(self.container, self.show_main_menu).pack(fill="both", expand=True)
 
 
 if __name__ == "__main__":
