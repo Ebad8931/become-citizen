@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 
 from speech_util import say_out_loud
 
@@ -75,9 +76,17 @@ class ListeningExercise(tk.Frame):
 
 
     def submit_answer(self):
-        print(self.selected_answer)
+        
+        if not self.selected_answer:
+            messagebox.showwarning("No Selection", "Please select an answer before submitting.")
+            return
 
-        #TODO: check the selected answer
+        is_correct = self.selected_answer == self.current_question["answer"]
+
+        if is_correct:
+            messagebox.showinfo('Correct!', 'Well done! You answered correctly.')
+        else:
+            messagebox.showerror('Wrong Answer', f'The correct answer was: {self.current_question["answer"]}')
 
         self.load_new_question()
         
