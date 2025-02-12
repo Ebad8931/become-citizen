@@ -14,6 +14,13 @@ git clone https://github.com/yourusername/citizenship-exam-prep.git
 cd citizenship-exam-prep
 ```
 
+### 2️⃣ Set Up a Virtual Environment
+```bash
+python -m venv venv
+source venv/bin/activate   # On macOS/Linux
+venv\Scripts\activate      # On Windows
+```
+
 ### 3️⃣ Install Dependencies
 ```bash
 pip install -r requirements.txt
