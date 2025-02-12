@@ -10,7 +10,8 @@ class MainMenu(tk.Frame):
         self, 
         parent, 
         navigate_to_coming_soon, 
-        navigate_to_listening_exercises
+        navigate_to_listening_exercise,
+        navigate_to_speaking_practice
     ):
         super().__init__(parent)
         
@@ -32,11 +33,11 @@ class MainMenu(tk.Frame):
         button.pack(pady=10, ipadx=20, ipady=5)
 
         # Listening Exercise Button
-        button = ttk.Button(self, text="Listening Exercise", command=navigate_to_listening_exercises)
+        button = ttk.Button(self, text="Listening Exercise", command=navigate_to_listening_exercise)
         button.pack(pady=10, ipadx=20, ipady=5)
 
         # Speaking Practice Button
-        button = ttk.Button(self, text="Speaking Practice", command=navigate_to_coming_soon)
+        button = ttk.Button(self, text="Speaking Practice", command=navigate_to_speaking_practice)
         button.pack(pady=10, ipadx=20, ipady=5)
 
         # Exit Button

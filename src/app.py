@@ -1,7 +1,9 @@
 import tkinter as tk
+
 from main_menu import MainMenu
 from coming_soon import ComingSoon
 from listening_exercise import ListeningExercise
+from speaking_practice import SpeakingPractice
 from app_constants import app_title, favicon_path
 
 
@@ -26,7 +28,8 @@ class App(tk.Tk):
         MainMenu(
             self.container, 
             self.show_coming_soon, 
-            self.show_listening_exercises
+            self.show_listening_exercise,
+            self.show_speaking_practice
         ).pack(fill="both", expand=True)
 
     def show_coming_soon(self):
@@ -35,11 +38,17 @@ class App(tk.Tk):
             widget.destroy()
         ComingSoon(self.container, self.show_main_menu).pack(fill="both", expand=True)
     
-    def show_listening_exercises(self):
-        """Displays the Listening Exercises screen."""
+    def show_listening_exercise(self):
+        """Displays the Listening Exercise screen."""
         for widget in self.container.winfo_children():
             widget.destroy()
         ListeningExercise(self.container, self.show_main_menu).pack(fill="both", expand=True)
+    
+    def show_speaking_practice(self):
+        """Displays the Speaking Practice screen."""
+        for widget in self.container.winfo_children():
+            widget.destroy()
+        SpeakingPractice(self.container, self.show_main_menu).pack(fill="both", expand=True)
 
 
 if __name__ == "__main__":
