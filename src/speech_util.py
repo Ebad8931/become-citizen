@@ -30,5 +30,10 @@ def say_out_loud(text: str):
     pygame.mixer.quit()
     os.remove(temp_filename)
 
+
+def convert_speech_to_text():
+    pass
+
+
 if __name__ == "__main__":
     say_out_loud('The quick brown fox jumps over the lazy dog.')

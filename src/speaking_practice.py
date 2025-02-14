@@ -1,9 +1,11 @@
 import os
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 import threading
 import pyaudio
 import wave
+import speech_recognition as sr
 
 from app_constants import temp_dir
 
@@ -26,6 +28,12 @@ class SpeakingPractice(tk.Frame):
         self.stop_button = ttk.Button(self, text="⏹ Stop Recording", command=self.stop_recording)
         self.stop_button.pack(pady=10)
         self.stop_button.config(state=tk.DISABLED)
+
+        self.transcribe_button = ttk.Button(self, text="📝 Convert to Text", command=self.convert_to_text)
+        self.transcribe_button.pack(pady=10)
+        
+        self.text_output = tk.Text(self, height=5, width=40)
+        self.text_output.pack(pady=10)
 
         # Back to Menu Button
         back_button = ttk.Button(self, text="Back to Menu", command=back_to_menu)
@@ -63,3 +71,15 @@ class SpeakingPractice(tk.Frame):
             wf.setsampwidth(audio.get_sample_size(pyaudio.paInt16))
             wf.setframerate(44100)
             wf.writeframes(b''.join(frames))
+    
+
+    def convert_to_text(self):
+        recognizer = sr.Recognizer()
+        try:
+            with sr.AudioFile(os.path.join(temp_dir, 'recorded_audio.wav')) as source:
+                audio_data = recognizer.record(source)
+                text = recognizer.recognize_google(audio_data)
+                self.text_output.delete(1.0, tk.END)
+                self.text_output.insert(tk.END, text)
+        except Exception as e:
+            messagebox.showerror("Error", f"Could not process audio: {e}")
