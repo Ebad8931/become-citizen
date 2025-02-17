@@ -3,6 +3,7 @@ import pygame
 from gtts import gTTS
 import wave
 import pyaudio
+import speech_recognition as sr
 
 from app_constants import temp_dir
 
@@ -31,10 +32,6 @@ def say_out_loud(text: str):
     # clean up and remove the temp file
     pygame.mixer.quit()
     os.remove(temp_filename)
-
-
-def convert_speech_to_text():
-    pass
 
 
 def get_speech_duration(text: str) -> int:
@@ -88,16 +85,34 @@ def record_audio(filename: str, duration: int):
     print("✅ Recording complete!") 
 
 
-def transcribe_audio():
-    pass
+def transcribe_audio(audio_file: str) -> str:
+    # speech to text function
+    # transcribes audio from a file and returns the text in str format
+    
+    recognizer = sr.Recognizer()
+    with sr.AudioFile(audio_file) as source:
+        audio_data = recognizer.record(source)
+
+    try:
+        text = recognizer.recognize_google(audio_data)
+        print(f"📝 Transcription: {text}")
+        return text
+    except sr.UnknownValueError:
+        print("⚠ Could not understand the audio.")
+        return ""
+    except sr.RequestError:
+        print("⚠ Speech Recognition service unavailable.")
+        return ""
 
 
 if __name__ == "__main__":
     # say_out_loud('The quick brown fox jumps over the lazy dog.')
 
-    duration = get_speech_duration('The quick brown fox jumps over the lazy dog.')
-    print('Duration', duration)
+    # duration = get_speech_duration('The quick brown fox jumps over the lazy dog.')
+    # print('Duration', duration)
 
-    record_audio('../temp/temp_recording.wav', duration)
+    # record_audio('../temp/temp_recording.wav', duration)
+
+    transcribe_audio('../temp/temp_recording.wav')
 
 
