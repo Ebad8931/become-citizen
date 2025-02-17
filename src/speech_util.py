@@ -40,10 +40,13 @@ def convert_speech_to_text():
 def get_speech_duration(text: str) -> int:
     # estimates the speech duration (in seconds) based on the number of words in the text.
     
-    words_per_second = 2.5                                  # average speaking rate
+    words_per_second = 2                                                # average speaking rate
     words_in_sentence = len(text.split())
 
-    return max(3, words_in_sentence / words_per_second)     # return at least 3 seconds
+    speech_duration = words_in_sentence / words_per_second * 1.10           
+    speech_duration = round(speech_duration * 1.10)                     # 10% buffer duration
+
+    return max(3, speech_duration)                                      # return at least 3 seconds
      
 
 def record_audio(filename: str, duration: int):
@@ -92,4 +95,9 @@ def transcribe_audio():
 if __name__ == "__main__":
     # say_out_loud('The quick brown fox jumps over the lazy dog.')
 
-    record_audio('../temp/temp_recording.wav', 5)
+    duration = get_speech_duration('The quick brown fox jumps over the lazy dog.')
+    print('Duration', duration)
+
+    record_audio('../temp/temp_recording.wav', duration)
+
+
