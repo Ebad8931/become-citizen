@@ -8,21 +8,18 @@ import speech_recognition as sr
 from app_constants import temp_dir
 
 
-def say_out_loud(text: str):
+def synthesize_speech(text: str, output_file: str):
+    tts = gTTS(text=text, lang='en')        # generate speech
+    tts.save(output_file)                   # save in file
 
-    # generate speech
-    tts = gTTS(text=text, lang='en')
 
-    # save audio in temporary file
-    temp_filename = os.path.join(temp_dir, 'audio.mp3')
-    tts.save(temp_filename)
-
+def play_audio(audio_file_path: str):
     # initialize pygame mixer to play back audio
     pygame.init()
     pygame.mixer.init()
 
     # load and play the audio
-    pygame.mixer.music.load(temp_filename)
+    pygame.mixer.music.load(audio_file_path)
     pygame.mixer.music.play()
 
     # wait until the audio finishes playing
@@ -31,7 +28,18 @@ def say_out_loud(text: str):
 
     # clean up and remove the temp file
     pygame.mixer.quit()
-    os.remove(temp_filename)
+    os.remove(audio_file_path)
+
+
+def say_out_loud(text: str):
+
+    # save audio in temporary file
+    temp_filename = os.path.join(temp_dir, 'audio.mp3')
+
+    synthesize_speech(text, temp_filename)
+
+    play_audio(temp_filename)
+
 
 
 def get_speech_duration(text: str) -> int:
@@ -106,13 +114,13 @@ def transcribe_audio(audio_file: str) -> str:
 
 
 if __name__ == "__main__":
-    # say_out_loud('The quick brown fox jumps over the lazy dog.')
+    say_out_loud('The quick brown fox jumps over the lazy dog.')
 
     # duration = get_speech_duration('The quick brown fox jumps over the lazy dog.')
     # print('Duration', duration)
 
     # record_audio('../temp/temp_recording.wav', duration)
 
-    transcribe_audio('../temp/temp_recording.wav')
+    # transcribe_audio('../temp/temp_recording.wav')
 
 
