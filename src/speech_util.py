@@ -37,8 +37,14 @@ def convert_speech_to_text():
     pass
 
 
-def get_speech_duration():
-    pass 
+def get_speech_duration(text: str) -> int:
+    # estimates the speech duration (in seconds) based on the number of words in the text.
+    
+    words_per_second = 2.5                                  # average speaking rate
+    words_in_sentence = len(text.split())
+
+    return max(3, words_in_sentence / words_per_second)     # return at least 3 seconds
+     
 
 def record_audio(filename: str, duration: int):
     # function: records audio from the microphone and saves it to a .wav file.
