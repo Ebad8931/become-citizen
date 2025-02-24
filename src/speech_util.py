@@ -61,7 +61,7 @@ def transcribe_audio(speech_duration: int) -> str:
         with sr.Microphone() as source:
             audio = recognizer.adjust_for_ambient_noise(source)
             print("listening ...")
-            audio = recognizer.listen(source, timeout=3, phrase_time_limit=speech_duration*1.20) # 20% buffer 
+            audio = recognizer.listen(source, timeout=7, phrase_time_limit=speech_duration)
 
         text = recognizer.recognize_google(audio)
         return text
