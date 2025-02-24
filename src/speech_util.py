@@ -1,5 +1,6 @@
 import os
 import pygame
+import Levenshtein
 from gtts import gTTS
 import speech_recognition as sr
 
@@ -42,12 +43,11 @@ def say_out_loud(text: str):
 def get_speech_duration(text: str) -> int:
     # estimates the speech duration (in seconds) based on the number of words in the text.
     
-    words_per_second = 1.5                                                # average speaking rate
+    words_per_second = 1.5                                              # average speaking rate
     words_in_sentence = len(text.split())
 
-    speech_duration = words_in_sentence / words_per_second * 1.10           
-    speech_duration = round(speech_duration * 1.10)                     # 10% buffer duration
-
+    speech_duration = round(words_in_sentence / words_per_second)           
+    print(speech_duration)
     return max(3, speech_duration)                                      # return at least 3 seconds
      
 
@@ -61,7 +61,7 @@ def transcribe_audio(speech_duration: int) -> str:
         with sr.Microphone() as source:
             audio = recognizer.adjust_for_ambient_noise(source)
             print("listening ...")
-            audio = recognizer.listen(source, timeout=7, phrase_time_limit=speech_duration)
+            audio = recognizer.record(source, duration=speech_duration)
 
         text = recognizer.recognize_google(audio)
         return text
@@ -73,12 +73,34 @@ def transcribe_audio(speech_duration: int) -> str:
         return "No speech detected. Try again."
 
 
-if __name__ == "__main__":
-    say_out_loud('The quick brown fox jumps over the lazy dog.')
+def evaluate_pronunciation(expected_text: str, recognized_text: str):
 
-    duration = get_speech_duration('The quick brown fox jumps over the lazy dog.')
+    # Calculate Levenshtein distance between expected and recognized speech
+    distance = Levenshtein.distance(expected_text.lower(), recognized_text.lower())
+    
+    # Define a threshold for "close match" (you can adjust this based on testing)
+    threshold = 5                        # Adjust this based on your test results
+    
+    if distance == 0:
+        return "Excellent pronunciation!"
+    elif distance <= threshold:
+        return "You're close! Keep practicing."
+    else:
+        return "Try again, you're a bit off."
+
+
+if __name__ == "__main__":
+    
+    original_text = 'The quick brown fox jumps over the lazy dog'
+
+    say_out_loud(original_text)
+
+    duration = get_speech_duration(original_text)
     print('Duration', duration)
 
     print('Say what you just heard ...')
-    text = transcribe_audio(duration)
-    print('Recorded speech:', text)
+    user_text = transcribe_audio(duration, 3)
+    print('Recorded speech:', user_text)
+
+    pronounciation_feedback = evaluate_pronunciation(original_text, user_text)
+    print('Feedback:', pronounciation_feedback)
