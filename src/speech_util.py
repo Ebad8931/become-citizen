@@ -81,7 +81,7 @@ def evaluate_pronunciation(expected_text: str, recognized_text: str):
     # Define a threshold for "close match" (you can adjust this based on testing)
     threshold = 5                        # Adjust this based on your test results
     
-    if distance == 0:
+    if 0 <= distance < 2:
         return "Excellent pronunciation!"
     elif distance <= threshold:
         return "You're close! Keep practicing."
