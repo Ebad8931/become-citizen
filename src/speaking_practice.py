@@ -5,13 +5,14 @@ import threading
 import time
 
 from speech_util import get_speech_duration, transcribe_audio, evaluate_pronunciation
+from data import get_phrase
 
 
 class SpeakingPractice(tk.Frame):
     def __init__(self, parent, back_to_menu):
         super().__init__(parent)
 
-        self.sentence_to_speak = "The United States is a country of freedom and opportunity."
+        self.sentence_to_speak = get_phrase()
 
         # Title Label
         label = tk.Label(self, text="Speaking Practice", font=("Arial", 20, "bold"))
