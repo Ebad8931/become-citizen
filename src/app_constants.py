@@ -19,5 +19,7 @@ assets_dir = os.path.join(base_path, 'assets')
 
 temp_dir = os.path.join(base_path, 'temp')
 
+data_dir = os.path.join(base_path, 'app-data')
+
 logo_path = os.path.join(assets_dir, 'become-citizen-brand.png')
 favicon_path = os.path.join(assets_dir, 'become-citizen-favicon.ico')

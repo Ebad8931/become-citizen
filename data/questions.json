@@ -1,0 +1,17 @@
+[
+    {
+        "text": "What is the capital of the United States?",
+        "options": ["New York", "Los Angeles", "Washington, D.C.", "Chicago"],
+        "answer": "Washington, D.C."
+    },
+    {
+        "text": "How many U.S. Senators are there?",
+        "options": ["50", "100", "435", "538"],
+        "answer": "100"
+    },
+    {
+        "text": "Who was the first President of the United States?",
+        "options": ["Thomas Jefferson", "Abraham Lincoln", "George Washington", "John Adams"],
+        "answer": "George Washington"
+    }
+]
