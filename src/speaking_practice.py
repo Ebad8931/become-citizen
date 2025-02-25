@@ -22,7 +22,7 @@ class SpeakingPractice(tk.Frame):
         self.instruction_label.pack(pady=20)
 
         # Sentence Display
-        self.sentence_label = tk.Label(self, text=self.sentence_to_speak, font=("Arial", 14, "bold"), fg="blue")
+        self.sentence_label = tk.Label(self, text=self.sentence_to_speak, font=("Arial", 14, "bold"), wraplength=400, fg="blue")
         self.sentence_label.pack(pady=10)
 
         # Countdown Label
