@@ -3,8 +3,8 @@ import speech_recognition as sr
 
 recognizer = sr.Recognizer()
 
-speech_duration = 5     # seconds until the mic will listen
-speech_timeout = 3             # seconds to wait for the speech to start
+speech_duration = 5             # seconds until the mic will listen
+speech_timeout = 3              # seconds to wait for the speech to start
 
 try:
     with sr.Microphone() as source:

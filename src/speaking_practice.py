@@ -84,22 +84,3 @@ class SpeakingPractice(tk.Frame):
         feedback = evaluate_pronunciation(self.sentence_to_speak, transcript) # self.get_feedback(transcript)
         print(feedback)
         self.feedback_var.set(feedback)
-
-
-    def get_feedback(self, user_text):
-        """Compares the user's spoken text with the expected text and provides feedback."""
-        if not user_text:
-            return "No speech detected. Try again!"
-        
-        expected_words = set(self.sentence_to_speak.lower().split())
-        user_words = set(user_text.lower().split())
-
-        correct_words = expected_words & user_words
-        incorrect_words = expected_words - user_words
-
-        if len(correct_words) / len(expected_words) > 0.8:
-            return "Great job! Your pronunciation is close to perfect."
-        elif len(correct_words) / len(expected_words) > 0.5:
-            return "Good effort! Some words could be clearer."
-        else:
-            return "Try again! Focus on clearer pronunciation."
