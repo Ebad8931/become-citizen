@@ -3,6 +3,7 @@ from tkinter import ttk
 from tkinter import messagebox
 
 from speech_util import say_out_loud
+from data import get_question
 
 
 class ListeningExercise(tk.Frame):
@@ -48,14 +49,8 @@ class ListeningExercise(tk.Frame):
 
 
     def load_new_question(self):
-        question = {
-            "text": "What is the capital of the United States?",
-            "options": ["New York", "Los Angeles", "Washington, D.C.", "Chicago"],
-            "answer": "Washington, D.C."
-        }
-
-        self.current_question = question    # current question assigned
-        self.selected_answer = None         # clears the answer
+        self.current_question = get_question()      # current question assigned
+        self.selected_answer = None                 # clears the answer
 
 
     def display_answer_choices(self, answer_options):
