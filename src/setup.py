@@ -2,7 +2,7 @@ from cx_Freeze import setup, Executable
 import sys
 import os
 
-from app_constants import assets_dir, temp_dir
+from app_constants import assets_dir, temp_dir, data_dir
 
 
 # define application meta-data
@@ -11,7 +11,7 @@ output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../releas
 app_name = 'Become-Citizen'
 
 # Ensure it runs as a GUI application (not a console one)
-base = "Win32GUI" if sys.platform == "win32" else None
+base = None #"Win32GUI" if sys.platform == "win32" else None
 
 # Define the executable file
 executables = [
@@ -38,8 +38,9 @@ setup(
             "excludes": ["tkinter.test", "unittest"],       # Exclude unnecessary modules
             "include_files": [
                 (assets_dir, "assets"), 
-                (temp_dir, "temp")
-            ],                                              # include assets and temp folders
+                (temp_dir, "temp"),
+                (data_dir, "app-data")
+            ],                                              # include assets, temp, & data folders
             "include_msvcr": True,                          # include dll files (msvcr.dll and Python DLLs)
             "optimize": 2
         }
