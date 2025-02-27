@@ -11,7 +11,7 @@ output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../releas
 app_name = 'Become-Citizen'
 
 # Ensure it runs as a GUI application (not a console one)
-base = None #"Win32GUI" if sys.platform == "win32" else None
+base = "Win32GUI" if sys.platform == "win32" else None
 
 # Define the executable file
 executables = [
